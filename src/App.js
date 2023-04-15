@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/signup";
 import SignIn from "./pages/signin";
+import NavBar from "./components/navBar";
 // import Landing from "./pages/landing";
 // import Recipe from "./pages/post";
 // import Account from "./pages/account";
@@ -9,6 +10,7 @@ import SignIn from "./pages/signin";
 export default function App() {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/" element={<div>Hello@@?</div>} />
         <Route path="/signup" element={<SignUp />} />
