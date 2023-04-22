@@ -9,7 +9,8 @@ export default function SignIn() {
     let payload = {
       email: data.get("email"),
       password: data.get("password"),
-      device_name: navigator.userAgent,
+      device_name: "browser",
+      // device_name: navigator.userAgent,
     };
     console.log(payload);
 
