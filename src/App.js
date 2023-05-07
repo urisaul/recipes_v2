@@ -10,15 +10,15 @@ import Post from "./pages/post";
 // import Account from "./pages/account";
 
 export default function App() {
-  return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/post/:id" element={<Post />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-      </Routes>
-    </Router>
-  );
+   return (
+      <Router>
+         <NavBar />
+         <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/post/:id" element={<Post />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+         </Routes>
+      </Router>
+   );
 }

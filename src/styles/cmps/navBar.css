@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600');
+
+:root {
+   --background: rgba(0, 200, 150, .85);
+}
+
+.nav-bar {
+   font-family: 'Work Sans', sans-serif;
+   background: var(--background);
+   text-align: center;
+   position: fixed;
+   z-index: 999;
+   width: 100%;
+}
+
+.nav-bar input[type="checkbox"] {
+   visibility: hidden;
+   position: absolute !important;
+}
+
+.nav-bar input[type="checkbox"]:focus~label {
+   outline: 3px solid rgba(lightblue, .75);
+}
+
+.nav-bar label {
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin-left: 1em;
+   height: 100%;
+   display: flex;
+   align-items: center;
+}
+
+.nav-bar span,
+.nav-bar span::before,
+.nav-bar span::after {
+   display: block;
+   background: white;
+   height: 3px;
+   width: 2em;
+   border-radius: 2px;
+   position: relative;
+}
+
+.nav-bar span::before,
+.nav-bar span::after {
+   content: '';
+   position: absolute;
+}
+
+.nav-bar span::before {
+   bottom: 7px;
+}
+
+.nav-bar span::after {
+   top: 7px;
+}
+
+.nav-bar nav {
+   position: absolute;
+   text-align: left;
+   top: 100%;
+   left: 0;
+   background: var(--background);
+   width: 100%;
+   transform: scale(1, 0);
+   transform-origin: top;
+   transition: transform 400ms ease-in-out;
+}
+
+.nav-bar ul {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+.nav-bar li {
+   margin-bottom: 1em;
+   margin-left: 1em;
+}
+
+.nav-bar a {
+   color: white;
+   font-weight: 500;
+   text-decoration: none;
+   font-size: 1.2rem;
+   text-transform: uppercase;
+   opacity: 0;
+   transition: opacity 150ms ease-in-out;
+}
+
+.nav-bar a:hover,
+.nav-bar a.active {
+   color: #000;
+}
+
+.nav-bar input[type="checkbox"]:checked~nav {
+   transform: scale(1, 1);
+}
+
+.nav-bar input[type="checkbox"]:checked~nav a {
+   opacity: 1;
+   transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 800px) {
+   .nav-bar label {
+      display: none;
+   }
+
+   .nav-bar {
+      display: grid;
+      grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+   }
+
+   .nav-bar nav {
+      all: unset;
+      position: relative;
+      text-align: left;
+      transition: none;
+      transform: scale(1, 1);
+      background: none;
+      top: initial;
+      left: initial;
+      grid-column: 3 / 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+   .nav-bar ul {
+      display: flex;
+   }
+
+   .nav-bar li {
+      margin-left: 3em;
+      margin-bottom: 0;
+   }
+
+   .nav-bar a {
+      opacity: 1;
+      position: relative;
+   }
+
+   .nav-bar a::before {
+      content: '';
+      display: block;
+      height: 5px;
+      background: black;
+      position: absolute;
+      top: -.75em;
+      left: 0;
+      right: 0;
+      transform: scale(0, 1);
+      transition: transform ease-in-out 250ms;
+   }
+
+   .nav-bar a:hover::before,
+   .nav-bar a.active::before {
+      transform: scale(1, 1);
+   }
+}
