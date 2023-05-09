@@ -15,13 +15,14 @@ export default function SignIn() {
     console.log(payload);
 
     postReq("https://urisaul.com/u_api/api/login", [], payload, false)
-      .then((res) => res.text())
       .then((res) => {
-        if (res.status === 200) {
-          localStorage.setItem("token", res);
-        } else {
-          alert(res);
+        if (res.status !== 200) {
+          alert(res.text());
         }
+        return res.text()
+      })
+      .then((res) => {
+        localStorage.setItem("token", res);
       })
       .catch((err) => console.log(err));
   };
