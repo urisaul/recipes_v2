@@ -13,16 +13,8 @@
    width: 100%;
 }
 
-.nav-bar input[type="checkbox"] {
-   visibility: hidden;
-   position: absolute !important;
-}
 
-.nav-bar input[type="checkbox"]:focus~label {
-   outline: 3px solid rgba(lightblue, .75);
-}
-
-.nav-bar label {
+.nav-bar button {
    position: absolute;
    top: 0;
    left: 0;
@@ -95,17 +87,17 @@
    color: #000;
 }
 
-.nav-bar input[type="checkbox"]:checked~nav {
+.nav-bar nav.open {
    transform: scale(1, 1);
 }
 
-.nav-bar input[type="checkbox"]:checked~nav a {
+.nav-bar nav.open a {
    opacity: 1;
    transition: opacity 250ms ease-in-out 250ms;
 }
 
 @media screen and (min-width: 800px) {
-   .nav-bar label {
+   .nav-bar button {
       display: none;
    }
 
