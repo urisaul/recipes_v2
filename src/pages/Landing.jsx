@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getReqTok } from "../utils/apiCalls";
 import { Link } from "react-router-dom";
 
-export function Landing() {
-   const [data, setData] = useState([]);
+function Landing() {
+   const [data, setData] = React.useState([]);
 
    useEffect(() => {
       getReqTok("https://urisaul.com/u_api/api/recipes/all")
@@ -36,3 +36,4 @@ export function Landing() {
    );
 }
 
+export default Landing;

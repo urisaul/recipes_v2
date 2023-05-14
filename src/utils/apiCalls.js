@@ -1,8 +1,14 @@
 // get request
 export const getReq = (url, headers = [], withTok = false) => {
+<<<<<<< HEAD
    if (withTok) {
       headers["Authorization"] = "Bearer " + localStorage.getItem("tok");
    }
+=======
+  if (withTok) {
+    headers["Authorization"] = "Bearer " + localStorage.getItem("token");
+  }
+>>>>>>> efc76c0183e10b62437e4a265d25acc6ae82b6ff
 
    let res = fetch(url, {
       method: "GET",
