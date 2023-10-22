@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { getReqTok } from "../utils/apiCalls";
 import { Link } from "react-router-dom";
 
-function Landing() {
+export function Landing() {
   const [data, setData] = React.useState([]);
 
   useEffect(() => {

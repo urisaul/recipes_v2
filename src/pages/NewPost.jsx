@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { postReq } from "../utils/apiCalls";
 import { useLocation, useParams } from "react-router-dom";
 
-function NewPost({}) {
+export function NewPost({}) {
   let { id } = useParams();
   const loc_state = useLocation();
   const [recipe, setRecipe] = useState({
