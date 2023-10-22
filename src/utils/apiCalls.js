@@ -8,7 +8,7 @@ export const getReq = (url, headers = [], withTok = false) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Accept: "application/json",
+      "Accept": "application/json",
       ...headers,
     },
   });
@@ -22,7 +22,7 @@ export const getReqTok = (url, headers = []) => {
 // post request
 export const postReq = (url, headers = [], payload, withTok = true) => {
   if (withTok) {
-    headers.attr("Authorization", "Bearer " + localStorage.getItem("token")); // Add token to header
+    headers["Authorization"] = "Bearer " + localStorage.getItem("token");
   }
 
   let res = fetch(url, {

@@ -5,6 +5,7 @@ import SignIn from "./pages/signin";
 import NavBar from "./components/navBar";
 import Landing from "./pages/landing";
 import Post from "./pages/post";
+import NewPost from "./pages/newPost";
 import About from "./pages/about";
 // import Landing from "./pages/landing";
 // import Recipe from "./pages/post";
@@ -17,6 +18,7 @@ export default function App() {
          <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/post/:id" element={<Post />} />
+            <Route path="/new-post" element={<NewPost />} />
             <Route path="/about" element={<About />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
