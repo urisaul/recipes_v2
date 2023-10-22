@@ -42,4 +42,11 @@ button,
 a,
 label {
    cursor: pointer;
+   border: none;
+   background: none;
+}
+
+.app>header {
+   height: 50px;
+   width: 100vw;
 }

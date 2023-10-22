@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getReqTok } from "../utils/apiCalls";
 import { Link } from "react-router-dom";
-import useIntersectionObserver from "../utils/hooks";
-import { mergeArrs } from "../utils/funcs";
-import OvalLoader from "../components/icons/Loader.tsx";
 
 function Landing() {
   const [data, setData] = React.useState([]);

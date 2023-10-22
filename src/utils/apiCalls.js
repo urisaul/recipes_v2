@@ -16,7 +16,7 @@ export const getReq = (url, headers = [], withTok = false) => {
 };
 
 export const getReqTok = (url, headers = []) => {
-  return getReq(url, headers, true);
+   return getReq(url, headers, true);
 };
 
 // post request
@@ -25,14 +25,14 @@ export const postReq = (url, headers = [], payload, withTok = true) => {
     headers["Authorization"] = "Bearer " + localStorage.getItem("token");
   }
 
-  let res = fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      ...headers,
-    },
-    body: JSON.stringify(payload),
-  });
-  return res;
+   let res = fetch(url, {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+         Accept: "application/json",
+         ...headers,
+      },
+      body: JSON.stringify(payload),
+   });
+   return res;
 };

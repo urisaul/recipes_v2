@@ -1,8 +1,26 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SignUp from "./pages/signup";
-import SignIn from "./pages/signin";
 import NavBar from "./components/navBar";
+<<<<<<< HEAD
+import { About, Landing, Post, SignIn, SignUp } from './pages';
+
+export default function App() {
+   return (
+      <div className="app">
+         <Router>
+            <header><NavBar /></header>
+            <main>
+               <Routes>
+                  <Route path="/" element={<Landing />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/post/:id" element={<Post />} />
+                  <Route path="/signup" element={<SignUp />} />
+                  <Route path="/signin" element={<SignIn />} />
+               </Routes>
+            </main>
+         </Router>
+      </div>
+=======
 import Landing from "./pages/landing";
 import Post from "./pages/post";
 import NewPost from "./pages/newPost";
@@ -24,5 +42,6 @@ export default function App() {
             <Route path="/signin" element={<SignIn />} />
          </Routes>
       </Router>
+>>>>>>> efc76c0183e10b62437e4a265d25acc6ae82b6ff
    );
 }
