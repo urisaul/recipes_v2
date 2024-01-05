@@ -6,37 +6,20 @@ export function SignIn() {
    const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
-      let payload = {
+      const payload = {
          email: data.get("email"),
          password: data.get("password"),
          device_name: "browser",
          // device_name: navigator.userAgent,
       };
 
-      // var myHeaders = new Headers();
-      // myHeaders.append("Content-Type", "application/json");
-      // var raw = JSON.stringify(
-      //    {
-      //       email: 'ctriebitz@gmail.com',
-      //       password: '123456',
-      //       device_name: 'browser',
-      //    }
-      // )
-      // var requestOptions = {
-      //    method: 'POST',
-      //    headers: myHeaders,
-      //    body: raw,
-      //    redirect: 'follow'
-      // }
-      console.log(payload);
-
-      postReq("https://urisaul.com/u_api/api/login")
+      postReq("https://urisaul.com/u_api/api/login", [], payload)
          .then((res) => res.text())
          .then((res) => {
             if (res.status === 200) {
                localStorage.setItem("token", res);
             } else {
-               alert(res);
+               console.log(res);
             }
          })
          .catch((err) => console.log(err));

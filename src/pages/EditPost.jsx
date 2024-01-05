@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { postReq } from "../utils/apiCalls";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { getReqTok, patchReq } from "../utils/apiCalls";
+import { Link, useParams } from "react-router-dom";
 import { convertImageToBase64 } from "../utils/funcs";
 
-export function NewPost({ }) {
+export function EditPost({ }) {
   let { id } = useParams();
   const [messageBox, setMessageBox] = useState({
     message: "",
@@ -17,7 +17,14 @@ export function NewPost({ }) {
     instructions: "",
   });
 
-  useEffect(() => { }, []);
+  useEffect(() => {
+    const url = !true
+      ? "http://localhost/api/recipes/single/"
+      : "https://urisaul.com/u_api/api/a_v1/225/2/get/";
+    getReqTok(url + id)
+      .then((res) => res.json())
+      .then((res) => setRecipe(res));
+  }, []);
 
   const handleChange = (e) => {
     if (e.target.type === "file") {
@@ -34,8 +41,8 @@ export function NewPost({ }) {
     e.preventDefault();
     const url = !true
       ? "http://localhost/api/recipes/add"
-      : "https://urisaul.com/u_api/api/a_v1/225/2/add";
-    postReq(url, undefined, recipe)
+      : "https://urisaul.com/u_api/api/a_v1/225/2/update";
+    patchReq(url, undefined, recipe)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Something went wrong');
@@ -43,9 +50,9 @@ export function NewPost({ }) {
         return res.json();
       })
       .then((res) => {
-        setRecipe(res.data)
+        // setRecipe(res.data)
         setMessageBox({
-          message: "Recipe added successfully",
+          message: "Recipe updated successfully",
           success: true,
         })
       })
@@ -73,7 +80,7 @@ export function NewPost({ }) {
             paddingBottom: "10px",
           }}
         >
-          <h1>New Recipe</h1>
+          <h1>Edit Recipe</h1>
           <br />
           {messageBox.message && <div style={{ border: (messageBox.success ? "none" : "1px solid red") }}>{messageBox.message}</div>}
           <br />
@@ -134,4 +141,4 @@ export function NewPost({ }) {
   );
 }
 
-export default NewPost;
+export default EditPost;

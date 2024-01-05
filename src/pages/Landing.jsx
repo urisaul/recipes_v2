@@ -1,52 +1,56 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getReqTok } from "../utils/apiCalls";
 import { Link } from "react-router-dom";
+import "../styles/cmps/landing.css";
 
 export function Landing() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const url = true
+    const url = !true
       ? "http://localhost/api/recipes/all"
-      : "https://urisaul.com/u_api/api/recipes/all";
+      : "https://urisaul.com/u_api/api/a_v1/225/2/get";
     getReqTok(url)
       .then((res) => res.json())
-      .then((res) => setData(res.data));
+      .then((res) => {
+        setData(res.data)
+        setIsLoading(false)
+      });
   }, []);
 
   if (!data) return <></>;
   return (
     <div>
-      <div
-      style={{paddingTop: "50px"}}>
-         <Link to={"/new-post"}>Add recipe</Link>
+
+      <div>
+        <Link to={"/new-post"}>Add recipe</Link>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-          justifyItems: "center",
-          maxWidth: "95%",
-          margin: "auto",
-        }}
-      >
+      <div class="recipe-container">
+        {isLoading && <div>Loading...</div>}
         {data.map((item) => (
-          <Link
-            key={item.id}
-            to={"/post/" + item.id}
-            state={{ id: item.id, _recipe: item }}
-            style={{ width: "250px" }}
-          >
-            <img
-              style={{ maxWidth: "240px" }}
-              src={
-                "https://urisaul.com/Recipes/images/recipes/" +
-                item.recipe_image
-              }
-            />
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-          </Link>
+          // <Link
+          //   key={item.id}
+          //   to={"/post/" + item.id}
+          //   state={{ id: item.id, _recipe: item }}
+          //   style={{ width: "250px" }}
+          // >
+            <div class="recipe-card" key={item.id}>
+              <img src={item.properties.image} alt="Recipe 1" />
+              <div class="recipe-details">
+                <h3>{item.properties.title}</h3>
+                <p>{item.properties.description}</p>
+                <Link
+                  key={item.id}
+                  to={"/post/" + item.id}
+                  state={{ id: item.id, _recipe: item }}
+                  style={{ width: "250px" }}
+                >
+                  Read more
+                </Link>
+              </div>
+            </div>
+          // </Link>
         ))}
       </div>
     </div>

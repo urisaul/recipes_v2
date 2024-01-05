@@ -11,3 +11,25 @@ export const mergeArrs = (arr1, arr2) => {
     return acc;
   }, arr1);
 };
+
+
+export const convertImageToBase64 = (fileInput) => {
+  return new Promise((resolve, reject) => {
+      if (fileInput.files && fileInput.files[0]) {
+          var file = fileInput.files[0];
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              resolve(e.target.result);
+          };
+
+          reader.onerror = function (error) {
+              reject(error);
+          };
+
+          reader.readAsDataURL(file);
+      } else {
+          reject(new Error('No file selected'));
+      }
+  });
+}
