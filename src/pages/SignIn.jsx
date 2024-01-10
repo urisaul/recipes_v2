@@ -1,8 +1,16 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postReq } from "../utils/apiCalls";
+import { useState } from "react";
 
 export function SignIn() {
+
+   const [messageBox, setMessageBox] = useState({
+      message: "",
+      success: false,
+   })
+
+   const navigate = useNavigate();
    const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -13,16 +21,45 @@ export function SignIn() {
          // device_name: navigator.userAgent,
       };
 
-      postReq("https://urisaul.com/u_api/api/login", [], payload)
-         .then((res) => res.text())
+
+      if (!payload.email || !payload.password) {
+         setMessageBox({
+            message: "Some required fields are missing",
+            success: false,
+         });
+         return false;
+      }
+
+      postReq("https://urisaul.com/u_api/api/q_login", [], payload)
          .then((res) => {
-            if (res.status === 200) {
-               localStorage.setItem("token", res);
-            } else {
-               console.log(res);
+            if (!res.ok) {
+               return res.json().then(err => { throw new Error(err.message) })
             }
+            return res.json();
          })
-         .catch((err) => console.log(err));
+         .then((res) => {
+            localStorage.setItem("token", res.token);
+            setMessageBox({
+               message: "Login successful",
+               success: true,
+            })
+            navigate('/')
+         })
+         .catch((err) => {
+            console.log(err);
+            setMessageBox({
+               message: err.message,
+               success: false,
+            })
+         })
+         .finally(() => {
+            setTimeout(() => {
+               setMessageBox({
+                  message: "",
+                  success: false,
+               });
+            }, 5000);
+         });
    };
 
    return (
@@ -44,14 +81,20 @@ export function SignIn() {
                maxWidth: "100%",
                width: "350px",
                margin: "auto",
+               marginBottom: "2em",
             }}
          >
-            <label>Email</label>
+            <label className="required">Email</label>
             <input name="email" type="email" />
-            <label>Password</label>
+            <label className="required">Password</label>
             <input name="password" type="password" />
+            <br />
             <button type="submit">Login</button>
          </form>
+         {messageBox.message && <div style={{
+            color: (messageBox.success ? "none" : "red"),
+            margin: "1em",
+         }}>{messageBox.success ? "" : "*"} {messageBox.message}</div>}
          <p>
             don't have an account yet? <Link to={"/signup"}>click here</Link>
          </p>

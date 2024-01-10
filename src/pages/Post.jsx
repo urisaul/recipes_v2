@@ -53,8 +53,11 @@ export function Post({ }) {
   return (
 
     <div class="recipe-container single">
-          <Link to={"/edit-post/"+id}>Edit</Link>
-          <Link onClick={deleteRecipe}>Delete</Link>
+     { <div style={{paddingBottom: "1.5em"}}>
+        Actions: 
+          <Link style={{marginLeft: "1.5em"}} to={"/edit-post/"+id}>Edit</Link>
+          <Link style={{marginLeft: "1.5em"}} onClick={deleteRecipe}>Delete</Link>
+      </div>}
       <div class="recipe-card-full">
         <img src={recipe.properties.image} alt={recipe.properties.title} />
         <div class="recipe-details">

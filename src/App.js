@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, HashRouter } from "react-router-dom";
 import NavBar from "./components/navBar";
 import { About, Landing, NewPost, Post, SignIn, SignUp } from "./pages";
 import { EditPost } from "./pages/EditPost";
@@ -7,7 +7,7 @@ import { EditPost } from "./pages/EditPost";
 export default function App() {
   return (
     <div className="app">
-      <Router>
+      <HashRouter>
         {/* <header><NavBar /></header> */}
         <header>
           <h1>Recipe Collection</h1>
@@ -34,7 +34,7 @@ export default function App() {
             <Route path="/signin" element={<SignIn />} />
           </Routes>
         </main>
-      </Router>
+      </HashRouter>
       <footer>
         <p>&copy; 2023 Recipe Collection</p>
       </footer>
